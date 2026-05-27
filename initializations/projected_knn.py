@@ -338,7 +338,7 @@ class ReservoirKMeans:
         self,
         n_clusters: int,
         pool_size: int,
-        vocab_size: int,
+        vocab_size: Optional[int] = None,
         smoothing: float = 1.0,
         power: float = 1.0,
         kmeans_iters: int = 50,
@@ -372,6 +372,8 @@ class ReservoirKMeans:
     # ---------- helpers ----------
     @torch.no_grad()
     def _compute_weights(self, token_loader: DataLoader) -> torch.Tensor:
+        if self.vocab_size is None:
+            raise ValueError("vocab_size must be set when USE_TOKEN_WEIGHTS=True.")
         counts = torch.zeros(self.vocab_size, dtype=torch.long)
         for batch in token_loader:
             tokens = _tokens_from_batch(batch)

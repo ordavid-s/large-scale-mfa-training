@@ -131,7 +131,7 @@ def initialize_centroids(cfg: Any, layer: int, train_loader):
         knn = ReservoirKMeans(
             n_clusters=k,
             pool_size=int(_cfg(cfg, "KMEANS_POOL_SIZE")),
-            vocab_size=int(_cfg(cfg, "MODEL_VOCAB_SIZE")),
+            vocab_size=_cfg(cfg, "MODEL_VOCAB_SIZE", None),
             smoothing=float(_cfg(cfg, "KMEANS_SMOOTHING", 1.0)),
             power=float(_cfg(cfg, "KMEANS_POWER", 1.0)),
             kmeans_iters=int(_cfg(cfg, "KMEANS_ITERS", 50)),
@@ -250,7 +250,7 @@ def train_layer(cfg: Any, layer: int) -> dict[str, Any]:
 
 def run_from_config(cfg: Any) -> list[dict[str, Any]]:
     _seed_everything(int(_cfg(cfg, "SEED", 0)))
-    layers = list(_cfg(cfg, "LAYERS"))
+    layers = list(_cfg(cfg, "LAYERS", [0]))
     if not layers:
         raise ValueError("LAYERS must contain at least one layer.")
     results = []
