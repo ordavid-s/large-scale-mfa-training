@@ -1,0 +1,5 @@
+accelerate
+numpy
+torch
+tqdm
+wandb

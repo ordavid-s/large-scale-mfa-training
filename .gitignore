@@ -1,0 +1,9 @@
+__pycache__/
+.ipynb_checkpoints/
+.venv/
+runs/
+*.pyc
+*.ckpt
+*.pt
+wandb/
+run_notebook.slurm
