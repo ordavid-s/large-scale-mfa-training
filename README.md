@@ -3,7 +3,7 @@
 Standalone MFA training code for large activation datasets.
 
 The code just requires a PyTorch `DataLoader`. The repo has code for initialization, training,
-and checkpointing. `run_training.py` is the entry point for running training, but  `notebooks/train_large_scale_mfa.ipynb` has a demo that explains the different hyper-parametrs and how to run the pipeline from end to end. Best to start there.
+and checkpointing. `run_training.py` is the entry point for running training, but `notebooks/train_large_scale_mfa.ipynb` has a demo that explains the different hyperparameters and how to run the pipeline from end to end. Best to start there.
 
 ## Install
 
@@ -17,6 +17,10 @@ pip install -r requirements.txt
 2. Implement `make_train_loader(layer)`.
 3. Optionally implement `make_val_loader(layer)`.
 4. Run `run_training.py`, or wrap it in your own job system.
+
+Use `RUN_NAME` for the filesystem-safe experiment name. Use `MODEL_NAME` for the
+source model that produced the activations, for example `meta-llama/Llama-3.1-8B`.
+Only used for saving and loading purposes.
 
 Loader batches should be:
 

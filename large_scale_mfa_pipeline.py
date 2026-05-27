@@ -41,7 +41,7 @@ def _layer_save_path(cfg: Any, layer: int) -> Path:
     output_dir = Path(_cfg(cfg, "OUTPUT_DIR", "runs/default")).expanduser()
     run_name = _cfg(cfg, "RUN_NAME", None)
     if run_name is None:
-        run_name = f"{_cfg(cfg, 'MODEL_NAME', 'model')}_L{layer}_k{_cfg(cfg, 'NUM_COMPONENTS')}_r{_cfg(cfg, 'RANK')}"
+        run_name = f"mfa_k{_cfg(cfg, 'NUM_COMPONENTS')}_r{_cfg(cfg, 'RANK')}"
     return output_dir / "models" / f"{run_name}_L{layer}.ckpt"
 
 

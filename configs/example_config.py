@@ -18,10 +18,8 @@ from pathlib import Path
 import torch
 
 
-# Run identity.
 OUTPUT_DIR = Path("/path/to/output/mfa_runs")
-RUN_NAME = "my_large_scale_mfa"
-MODEL_NAME = "my_model"
+RUN_NAME = "llama31_8b_mfa"
 LAYERS = [0]
 
 # Model size.
@@ -43,8 +41,6 @@ PIN_MEMORY = True
 def make_train_loader(layer):
     """
     Replace with your activation DataLoader.
-
-    For 100B-scale runs, use a streaming Dataset and set STEPS_PER_EPOCH below.
     """
     raise NotImplementedError("Define make_train_loader(layer) for your activation store.")
 
@@ -58,7 +54,7 @@ def make_val_loader(layer):
 
 # Initialization.
 INIT_METHOD = "projected_kmeans"
-CENTROIDS_PATH = OUTPUT_DIR / "centroids" / "centroids_{model_name}_L{layer}_k{num_components}.pt"
+CENTROIDS_PATH = OUTPUT_DIR / "centroids" / "centroids_{run_name}_L{layer}_k{num_components}.pt"
 FORCE_REINIT = False
 
 KMEANS_POOL_SIZE = 4_000_000
