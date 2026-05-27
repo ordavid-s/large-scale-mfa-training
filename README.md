@@ -2,24 +2,14 @@
 
 Standalone MFA training code for large activation datasets.
 
-You provide PyTorch `DataLoader`s. The repo handles initialization, training,
-and checkpointing. `run_training.py` is the entry point to wrap in whatever job
-system you use.
+The code just requires a PyTorch `DataLoader`. The repo has code for initialization, training,
+and checkpointing. `run_training.py` is the entry point for running training, but  `notebooks/train_large_scale_mfa.ipynb` has a demo that explains the different hyper-parametrs and how to run the pipeline from end to end. Best to start there.
 
 ## Install
 
 ```bash
 pip install -r requirements.txt
 ```
-
-## Smoke Test
-
-```bash
-python3 run_training.py --config configs/hierarchy_demo_config.py
-```
-
-The smoke test uses `data/hierarchy_dataset_long.json` and converts text rows
-into small hashed feature vectors.
 
 ## Real Run
 
@@ -46,11 +36,3 @@ Multi-GPU runs use the same entry point under your launcher, for example:
 ```bash
 accelerate launch --num_processes 8 run_training.py --config configs/example_config.py
 ```
-
-## Main Knobs
-
-- `NUM_COMPONENTS`: pilot 1k-8k; serious run 8k-64k.
-- `RANK`: start with 8 or 10.
-- `KMEANS_POOL_SIZE`: 500k-2M for pilots, 2M-8M for larger dictionaries.
-- `PROJECTED_DIM`: 256 is a good default.
-- `STEPS_PER_EPOCH`: use a fixed step budget for huge streams.
