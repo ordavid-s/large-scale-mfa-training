@@ -18,10 +18,6 @@ pip install -r requirements.txt
 3. Optionally implement `make_val_loader(layer)`.
 4. Run `run_training.py`, or wrap it in your own job system.
 
-Use `RUN_NAME` for the filesystem-safe experiment name. Use `MODEL_NAME` for the
-source model that produced the activations, for example `meta-llama/Llama-3.1-8B`.
-Only used for saving and loading purposes.
-
 Loader batches should be:
 
 ```python
